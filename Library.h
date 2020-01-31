@@ -119,8 +119,6 @@ void BuildLibraryFromCSV(string filename, vector<Book> &books) {
         fin >> year;
         fin >> comma;
 
-        getline(fin, junk); // TODO: Replace with `fin.ignore()`?
-
         books.emplace_back(Book(num, title, author, year)); // TODO: Add price somehow once you learn optionals?
     }
 }

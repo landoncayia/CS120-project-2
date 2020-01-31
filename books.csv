@@ -1,0 +1,100 @@
+book_id,original_title,authors,original_publication_year
+1,The Hunger Games,Suzanne Collins,2008
+2,Harry Potter and the Philosopher's Stone,"J.K. Rowling, Mary GrandPré",1997
+3,Twilight,Stephenie Meyer,2005
+4,To Kill a Mockingbird,Harper Lee,1960
+5,The Great Gatsby,F. Scott Fitzgerald,1925
+6,The Fault in Our Stars,John Green,2012
+7,The Hobbit or There and Back Again,J.R.R. Tolkien,1937
+8,The Catcher in the Rye,J.D. Salinger,1951
+9,Angels & Demons ,Dan Brown,2000
+10,Pride and Prejudice,Jane Austen,1813
+11,The Kite Runner ,Khaled Hosseini,2003
+12,Divergent,Veronica Roth,2011
+13,Nineteen Eighty-Four,"George Orwell, Erich Fromm, Celâl Üster",1949
+14,Animal Farm: A Fairy Story,George Orwell,1945
+15,Het Achterhuis: Dagboekbrieven 14 juni 1942 - 1 augustus 1944,"Anne Frank, Eleanor Roosevelt, B.M. Mooyaart-Doubleday",1947
+16,Män som hatar kvinnor,"Stieg Larsson, Reg Keeland",2005
+17,Catching Fire,Suzanne Collins,2009
+18,Harry Potter and the Prisoner of Azkaban,"J.K. Rowling, Mary GrandPré, Rufus Beck",1999
+19, The Fellowship of the Ring,J.R.R. Tolkien,1954
+20,Mockingjay,Suzanne Collins,2010
+21,Harry Potter and the Order of the Phoenix,"J.K. Rowling, Mary GrandPré",2003
+22,The Lovely Bones,Alice Sebold,2002
+23,Harry Potter and the Chamber of Secrets,"J.K. Rowling, Mary GrandPré",1998
+24,Harry Potter and the Goblet of Fire,"J.K. Rowling, Mary GrandPré",2000
+25,Harry Potter and the Deathly Hallows,"J.K. Rowling, Mary GrandPré",2007
+26,The Da Vinci Code,Dan Brown,2003
+27,Harry Potter and the Half-Blood Prince,"J.K. Rowling, Mary GrandPré",2005
+28,Lord of the Flies ,William Golding,1954
+29,An Excellent conceited Tragedie of Romeo and Juliet,"William Shakespeare, Robert           Jackson",1595
+30,Gone Girl,Gillian Flynn,2012
+31,The Help,Kathryn Stockett,2009
+32,Of Mice and Men ,John Steinbeck,1937
+33,Memoirs of a Geisha,Arthur Golden,1997
+34,Fifty Shades of Grey,E.L. James,2011
+35,O Alquimista,"Paulo Coelho, Alan R. Clarke",1988
+36,The Giver,Lois Lowry,1993
+37,"The Lion, the Witch and the Wardrobe",C.S. Lewis,1950
+38,The Time Traveler's Wife,Audrey Niffenegger,2003
+39,A Game of Thrones,George R.R. Martin,1996
+40,"Eat, pray, love: one woman's search for everything across Italy, India and Indonesia",Elizabeth Gilbert,2006
+41,The Lightning Thief,Rick Riordan,2005
+42,Little Women,Louisa May Alcott,1868
+43,Jane Eyre,"Charlotte Brontë, Michael Mason",1847
+44,The Notebook,Nicholas Sparks,1996
+45,Life of Pi,Yann Martel,2001
+46,Water for Elephants,Sara Gruen,2006
+47,The Book Thief,Markus Zusak,2005
+48,Fahrenheit 451,Ray Bradbury,1953
+49,"New Moon (Twilight, #2)",Stephenie Meyer,2006
+50,Where the Sidewalk Ends: The Poems and Drawings of Shel Silverstein,Shel Silverstein,1974
+51,City of Bones,Cassandra Clare,2007
+52,Eclipse,Stephenie Meyer,2007
+53,Eragon,Christopher Paolini,2002
+54,The Hitchhiker's Guide to the Galaxy,Douglas Adams,1979
+55,Brave New World,Aldous Huxley,1932
+56,Breaking Dawn,Stephenie Meyer,2008
+57,The Secret Life of Bees,Sue Monk Kidd,2001
+58,The Adventures of Huckleberry Finn,"Mark Twain, John Seelye, Guy Cardwell",1884
+59,Charlotte's Web,"E.B. White, Garth Williams, Rosemary Wells",1952
+60,The Curious Incident of the Dog in the Night-Time,Mark Haddon,2003
+61,The Girl on the Train,Paula Hawkins,2015
+62,Northern Lights,Philip Pullman,1995
+63,Wuthering Heights,"Emily Brontë, Richard J. Dunn",1847
+64,My Sister's Keeper,Jodi Picoult,2004
+65,"Slaughterhouse-Five, or The Children's Crusade: A Duty-Dance with Death ",Kurt Vonnegut Jr.,1969
+66,Gone with the Wind,Margaret Mitchell,1936
+67,A Thousand Splendid Suns,Khaled Hosseini,2007
+68,The Perks of Being a Wallflower,Stephen Chbosky,1999
+69,Insurgent,Veronica Roth,2012
+70,Ender's Game,Orson Scott Card,1985
+71,"Frankenstein; or, The Modern Prometheus","Mary Wollstonecraft Shelley, Percy Bysshe Shelley, Maurice Hindle",1818
+72,The Shining,Stephen King,1977
+73,The Host,Stephenie Meyer,2008
+74,Looking for Alaska,John Green,2005
+75,,Helen Fielding,1996
+76,Sense and Sensibility,"Jane Austen, Tony Tanner, Ros Ballaster",1811
+77,Holes,"Louis Sachar, Louis Sachar",1998
+78,The Devil Wears Prada,Lauren Weisberger,2003
+79,Ὀδύσσεια,"Homer, Robert Fagles, E.V. Rieu, Frédéric Mugler, Bernard Knox",-720
+80,Le Petit Prince,"Antoine de Saint-Exupéry, Richard Howard, Dom Marcos Barbosa, Melina Karakosta",1946
+81,The Glass Castle,Jeannette Walls,2005
+82,Into the Wild,Jon Krakauer,1996
+83,A Tale of Two Cities,"Charles Dickens, Richard Maxwell, Hablot Knight Browne",1859
+84,Jurassic Park,Michael Crichton,1990
+85,The Giving Tree,Shel Silverstein,1964
+86,A Time to Kill,John Grisham,1989
+87,Un di Velt Hot Geshvign,"Elie Wiesel, Marion Wiesel",1958
+88,Paper Towns,John Green,2008
+89,The Princess Bride,William Goldman,1973
+90,The Outsiders,S.E. Hinton,1967
+91,The Maze Runner,James Dashner,2009
+92,Freakonomics: A Rogue Economist Explores the Hidden Side of Everything,"Steven D. Levitt, Stephen J. Dubner",2005
+93,The Secret Garden,Frances Hodgson Burnett,1911
+94,Cien años de soledad,"Gabriel García Márquez, Gregory Rabassa",1967
+95,The Picture of Dorian Gray,"Oscar Wilde, Jeffrey Eugenides",1891
+96,Fifty Shades Freed,E.L. James,2012
+97,Dracula,"Bram Stoker, Nina Auerbach, David J. Skal",1897
+98,Flickan som lekte med elden,"Stieg Larsson, Reg Keeland",2006
+99,Fifty Shades Darker,E.L. James,2011
