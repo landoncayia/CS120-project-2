@@ -1,8 +1,10 @@
 #ifndef LC_PROJECT2_LIBRARY_H
 #define LC_PROJECT2_LIBRARY_H
 #include <algorithm>
-#include <memory>
+#include <fstream>
 #include <iostream>
+#include <iomanip>
+#include <memory>
 #include <optional>
 #include <string>
 #include <vector>
@@ -19,8 +21,7 @@ private:
     int num;
     string title;
     string author;
-    int pageCount;
-    string isbn;
+    int publicationYear;
     bool isAvailable;
     optional<double> purchasePrice;
 
@@ -29,8 +30,8 @@ public:
     // Requires: Book no., title, author, page count, and price (if applicable)
     // Modifies: Nothing
     // Effects: Creates a Book object
-    Book(int num, string title, string author, int pages);
-    Book(int num, string title, string author, int pages, double price);
+    Book(int num, string title, string author, int year);
+    Book(int num, string title, string author, int year, double price);
 
     // Getters
     // Requires: Nothing
@@ -39,8 +40,7 @@ public:
     int getNum() const;
     string getTitle() const;
     string getAuthor() const;
-    int getPageCount() const;
-    string getISBN() const;
+    int getPublicationYear() const;
     bool getAvailability() const;
     optional<string> getPurchasePrice() const;
 
@@ -49,7 +49,6 @@ public:
     // Modifies: The field(s) specified by the function
     // Effects: Modifies certain fields based on the function
     void setBookInfo(string title, string author, int pages);
-    void setISBN(string isbn);
     void setAvailability(bool status);
     void setPurchasePrice(double price);
 };
@@ -61,6 +60,9 @@ private:
 public:
     // Constructor
     // Requires: Nothing or a vector of books to initialize the library with
+    // Modifies: Nothing
+    // Effects: Creates a Library object that has books, calls BuildLibraryFromCSV if provided with a vector of books
+    //          and fills with the contents of `books.csv`
     Library();
     Library(vector<Book> inv);
 
@@ -94,5 +96,33 @@ public:
     // Effects: TBD
     void buyBook();
 };
+
+void BuildLibraryFromCSV(string filename, vector<Book> &books) {
+    ifstream fin;
+    fin.open("../" + filename);
+    if (fin) {
+        string junk = "";
+        getline(fin, junk);
+    }
+    while (fin && fin.peek() != EOF) {
+        int num, year;
+        string title, author, junk;
+        char comma;
+
+        fin >> num;
+        fin >> comma;
+
+        getline(fin, title, ',');
+
+        getline(fin, author, ',');
+
+        fin >> year;
+        fin >> comma;
+
+        getline(fin, junk); // TODO: Replace with `fin.ignore()`?
+
+        books.emplace_back(Book(num, title, author, year)); // TODO: Add price somehow once you learn optionals?
+    }
+}
 
 #endif //LC_PROJECT2_LIBRARY_H
