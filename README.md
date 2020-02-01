@@ -32,17 +32,33 @@ containing information about numerous library books and adds them to a vector
 that stores the books in an instance of the library class, called bookInventory.
 
 ## Second Part
-This part just involves writing test cases. Not sure whether I need to add
-anything to README.md or not.
+For the test cases, I began by using `testing.cpp` to simply try to use the
+program for its basic functionality. This includes creation of a Book vector
+and the initialization of the Library. I did not anticipate that a ton of
+testing would be needed.  
+
+It was fairly difficult to write testing cases for this program in the same way 
+that we did so in class because my program does not have functions that take
+input directly as parameters, but rather require input from the user as the
+functions run.
 
 ## Third Part
 
 #### Did all test cases pass on the first try?
-Write stuff here
+Definitely not. There was a lot that was wrong with the program. The executables
+for `main.cpp` and `testing.cpp` were not implemented correctly, so they could
+not be run separately. There were also a lot of logic errors and inconsistencies
+that I would not have caught otherwise.
 
 ## Fourth Part
 
-#### 
+#### Why do you think you did not have these cases before you implemented the algorithm(s)?
+Because of the fact that I was experiencing difficulty with testing the way
+we did in lecture, I didn't have many test cases by the second step.  
+
+To work around the limitation detailed in the second part, I decided to use
+the console to print what should be inputted for test cases. This seemed to
+work well as I was still able to catch and fix errors this way.
 
 ## Fifth Part
 
