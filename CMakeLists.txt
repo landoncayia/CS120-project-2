@@ -7,4 +7,4 @@ add_executable(LC_Project2
         main.cpp Library.h Library.cpp)
 
 add_executable(LC_Project2_Testing
-        main.cpp testing.cpp Library.h Library.cpp)
+        testing.cpp Library.h Library.cpp)

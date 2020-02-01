@@ -77,6 +77,11 @@ public:
     void getBookInfo(Book book) const;
 
     // Requires: Nothing
+    // Modifies: Nothing
+    // Effects: Returns the size of (number of books in) the library
+    int getLibSize() const;
+
+    // Requires: Nothing
     // Modifies: isAvailable field
     // Effects: Allows the user to check a book out, making it not available
     void checkOut();

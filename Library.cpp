@@ -7,6 +7,7 @@ Book::Book(int num, string title, string author, int year) {
     this->title = title;
     this->author = author;
     publicationYear = year;
+    isAvailable = true;
     purchasePrice = nullopt;
 }
 
@@ -15,6 +16,7 @@ Book::Book(int num, string title, string author, int year, double price) {
     this->title = title;
     this->author = author;
     publicationYear = year;
+    isAvailable = true;
     purchasePrice = price;
 }
 
@@ -149,6 +151,10 @@ void Library::checkOut() {
     if (!found) {
         cout << "Could not find a book with that No." << endl;
     }
+}
+
+int Library::getLibSize() const {
+    return(bookInventory.size());
 }
 
 void Library::checkIn() {
