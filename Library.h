@@ -95,32 +95,11 @@ public:
     // Modifies: TBD
     // Effects: TBD
     void buyBook();
+
+    // Requires:
+    // Modifies:
+    // Effects:
+    void BuildLibraryFromCSV(string filename, vector<Book> &books);
 };
-
-void BuildLibraryFromCSV(string filename, vector<Book> &books) {
-    ifstream fin;
-    fin.open("../" + filename);
-    if (fin) {
-        string junk = "";
-        getline(fin, junk);
-    }
-    while (fin && fin.peek() != EOF) {
-        int num, year;
-        string title, author, junk;
-        char comma;
-
-        fin >> num;
-        fin >> comma;
-
-        getline(fin, title, ',');
-
-        getline(fin, author, ',');
-
-        fin >> year;
-        fin >> comma;
-
-        books.emplace_back(Book(num, title, author, year)); // TODO: Add price somehow once you learn optionals?
-    }
-}
 
 #endif //LC_PROJECT2_LIBRARY_H

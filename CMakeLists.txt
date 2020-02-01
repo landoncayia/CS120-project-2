@@ -4,7 +4,7 @@ project(LC_Project2)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(LC_Project2
-        main.cpp Library.h testing.cpp Library.cpp)
+        main.cpp Library.h Library.cpp)
 
 add_executable(LC_Project2_Testing
-        testing.cpp)
+        main.cpp testing.cpp Library.h Library.cpp)
