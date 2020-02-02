@@ -61,7 +61,7 @@ Library::Library(vector<Book> inv) {
     bookInventory = inv;
 }
 
-bool Library::searchForBook() {
+bool Library::searchForBook(ifstream &cin) {
     int choice = 0;
     cout << "Search by\n"
             "1) Title\n"
@@ -85,8 +85,7 @@ bool Library::searchForBook() {
                 transform(tempTitle.begin(), tempTitle.end(), tempTitle.begin(), ::tolower);
                 if (tempTitle == searchTerm) {
                     found = true;
-                    cout << "Found book.\n"
-                            "Book Info:\n";
+                    cout << "Found book.\n\n";
                     getBookInfo(b);
                 }
             }
@@ -101,13 +100,12 @@ bool Library::searchForBook() {
             cout << "Enter a book author: ";
             getline(cin, searchTerm);
             transform(searchTerm.begin(), searchTerm.end(), searchTerm.begin(), ::tolower);
-            for (Book b : bookInventory) {
+            for (const Book& b : bookInventory) {
                 string tempAuthor = b.getAuthor();
                 transform(tempAuthor.begin(), tempAuthor.end(), tempAuthor.begin(), ::tolower);
                 if (tempAuthor == searchTerm) {
                     found = true;
-                    cout << "Found book.\n"
-                            "Book Info:\n";
+                    cout << "Found book.\n\n";
                     getBookInfo(b);
                 }
             }
@@ -123,7 +121,7 @@ bool Library::searchForBook() {
     }
 }
 
-void Library::getBookInfo(Book book) const {
+void Library::getBookInfo(const Book& book) const {
     cout << "No. " + to_string(book.getNum()) +
             "\nTitle: " + book.getTitle() +
             "\nAuthor: " + book.getAuthor() +
@@ -132,7 +130,7 @@ void Library::getBookInfo(Book book) const {
          << endl;
 }
 
-void Library::checkOut() {
+void Library::checkOut(ifstream &cin) {
     int id;
     cout << "Enter the No. of the book you wish to check out: ";
     while (!(cin >> id)) {
@@ -157,7 +155,7 @@ int Library::getLibSize() const {
     return(bookInventory.size());
 }
 
-void Library::checkIn() {
+void Library::checkIn(ifstream &cin) {
     int id;
     cout << "Enter the No. of the book you are checking in: ";
     while (!(cin >> id)) {
@@ -178,11 +176,11 @@ void Library::checkIn() {
     }
 }
 
-void Library::BuildLibraryFromCSV(string filename, vector<Book> &books) {
+void Library::BuildLibraryFromCSV(const string& filename, vector<Book> &books) {
     ifstream fin;
     fin.open("../" + filename);
     if (fin) {
-        string junk = "";
+        string junk;
         getline(fin, junk);
     }
     while (fin && fin.peek() != EOF) {
@@ -203,4 +201,5 @@ void Library::BuildLibraryFromCSV(string filename, vector<Book> &books) {
 
         books.emplace_back(Book(num, title, author, year)); // TODO: Add price somehow once you learn optionals?
     }
+    fin.close();
 }

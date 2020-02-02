@@ -69,12 +69,12 @@ public:
     // Requires: Nothing
     // Modifies: Nothing
     // Effects: Allows the user to search for a book by title or by author
-    bool searchForBook();
+    bool searchForBook(ifstream &cin);
 
     // Requires: A Book object
     // Modifies: Nothing
     // Effects: Displays a book's number, name, author, page count, and availability to the user
-    void getBookInfo(Book book) const;
+    void getBookInfo(const Book& book) const;
 
     // Requires: Nothing
     // Modifies: Nothing
@@ -84,12 +84,12 @@ public:
     // Requires: Nothing
     // Modifies: isAvailable field
     // Effects: Allows the user to check a book out, making it not available
-    void checkOut();
+    void checkOut(ifstream &cin);
 
     // Requires: Nothing
     // Modifies: isAvailable field
     // Effects: Allows the user to check a book in, making it available
-    void checkIn();
+    void checkIn(ifstream &cin);
 
     // Requires: TBD
     // Modifies: TBD
@@ -104,7 +104,7 @@ public:
     // Requires:
     // Modifies:
     // Effects:
-    void BuildLibraryFromCSV(string filename, vector<Book> &books);
+    void BuildLibraryFromCSV(const string& filename, vector<Book> &books);
 };
 
 #endif //LC_PROJECT2_LIBRARY_H

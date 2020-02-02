@@ -1,8 +1,13 @@
 #include "Library.h"
 
-void testCreateBook();
-void testCreateLibrary();
-void testDisplayInfo(Book book);
+void testSearchForBook(ifstream &fin, Library testLib);
+void testCheckInCheckOut(ifstream &fin, Library testLib);
+
+/*
+ * In order to test, functions in 'Library.h' and 'Library.cpp' must be modified to accept ifstream objects. This is
+ * done to simulate potential user input from a .txt file in the Input-For-Testing folder. The testing part of this
+ * program CANNOT be run if the functions are not modified to accept ifstream objects.
+ */
 
 int main() {
     // Should create an empty vector
@@ -19,18 +24,47 @@ int main() {
         cout << "One or more books were not added to the Library." << endl;
     }
 
-    // Search for `The Great Gatsby` using cin to give input
-    cout << "Searching for `The Great Gatsby` - should find the book and print its information..." << endl;
-    cout << "Type `1` and then `The Great Gatsby` when prompted..." << endl << endl;
-    testLib.searchForBook();
-    cout << "If the book info was displayed, the test was a success." << endl << endl;
+    // This .txt file contains test cases for functions
+    ifstream fin;
+    fin.open("../Input-For-Testing/testCases.txt");
 
-    // Try to check this book out
-    cout << "Try to check out `The Great Gatsby`..." << endl;
-    cout << "Enter `5` when prompted..." << endl << endl;
-    testLib.checkOut();
+    // Test searching for books
+    testSearchForBook(fin, testLib);
 
+    // Test checking books out/in
+    testCheckInCheckOut(fin, testLib);
 
-    testLib.checkIn();
     return 0;
+}
+
+void testSearchForBook(ifstream &fin, Library testLib) {
+    cout << "===== TESTING SEARCH FUNCTIONALITY" << endl;
+    cout << "===== TEST 1 =====" << endl;
+    cout << "Searching for `The Great Gatsby` - should find the book and print its information..." << endl << endl;
+    testLib.searchForBook(fin);
+    cout << "\nIf the book info was displayed, the test was a success." << endl << endl;
+
+    cout << "===== TEST 2 =====" << endl;
+    cout << "Searching for 'The Hunger Games: Catching Fire' - should not find the book..." << endl << endl;
+    testLib.searchForBook(fin);
+    cout << "\nIf an error message was displayed, the test was a success." << endl << endl;
+
+    cout << "===== TEST 3 =====" << endl;
+    cout << "Searching for the author 'F. Scott Fitzgerald' - should find a book..." << endl << endl;
+    testLib.searchForBook(fin);
+    cout << "\nIf all books by this author are displayed, the test was a success." << endl;
+    cout << "If some books are missing, then this needs fixing." << endl << endl;
+
+    cout << "===== TEST 4 =====" << endl;
+    cout << "Searching for the author 'Dr. Seuss' - should not find anything..." << endl << endl;
+    testLib.searchForBook(fin);
+    cout << "\nIf an error message was displayed, the test was a success." << endl << endl;
+}
+
+void testCheckInCheckOut(ifstream &fin, Library testLib) {
+    cout << "===== TESTING CHECK IN/OUT FUNCTIONALITY =====" << endl;
+    cout << "===== TEST 1 =====" << endl;
+    cout << "Trying to check out `The Great Gatsby`, should succeed..." << endl << endl;
+    testLib.checkOut(fin);
+    cout << "\nIf the book is no longer available, the test was a success." << endl;
 }
