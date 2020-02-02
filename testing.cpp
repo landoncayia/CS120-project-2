@@ -1,7 +1,7 @@
 #include "Library.h"
 
-void testSearchForBook(ifstream &fin, Library testLib);
-void testCheckInCheckOut(ifstream &fin, Library testLib);
+void testSearchForBook(ifstream &fin, Library &testLib);
+void testCheckInCheckOut(ifstream &fin, Library &testLib);
 
 /*
  * In order to test, functions in 'Library.h' and 'Library.cpp' must be modified to accept ifstream objects. This is
@@ -37,7 +37,7 @@ int main() {
     return 0;
 }
 
-void testSearchForBook(ifstream &fin, Library testLib) {
+void testSearchForBook(ifstream &fin, Library &testLib) {
     cout << "===== TESTING SEARCH FUNCTIONALITY" << endl;
     cout << "===== TEST 1 =====" << endl;
     cout << "Searching for `The Great Gatsby` - should find the book and print its information..." << endl << endl;
@@ -61,10 +61,21 @@ void testSearchForBook(ifstream &fin, Library testLib) {
     cout << "\nIf an error message was displayed, the test was a success." << endl << endl;
 }
 
-void testCheckInCheckOut(ifstream &fin, Library testLib) {
+void testCheckInCheckOut(ifstream &fin, Library &testLib) {
     cout << "===== TESTING CHECK IN/OUT FUNCTIONALITY =====" << endl;
     cout << "===== TEST 1 =====" << endl;
     cout << "Trying to check out `The Great Gatsby`, should succeed..." << endl << endl;
     testLib.checkOut(fin);
-    cout << "\nIf the book is no longer available, the test was a success." << endl;
+    cout << "\nIf the book is no longer available, the test was a success." << endl << endl;
+
+    cout << "===== TEST 2 =====" << endl;
+    cout << "Trying to check in `The Great Gatsby`, should succeed..." << endl << endl;
+    testLib.checkIn(fin);
+    cout << "\nIf the book is now available, the test was a success." << endl;
+
+    cout << "===== TEST 3 =====" << endl;
+    cout << "Trying to check out `The Great Gatsby` twice, should fail..." << endl << endl;
+    testLib.checkOut(fin);
+    testLib.checkOut(fin);
+    cout << "\nIf the book was checked out and then an error message was displayed, the test was a success." << endl;
 }

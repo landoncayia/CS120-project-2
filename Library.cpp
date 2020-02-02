@@ -122,12 +122,13 @@ bool Library::searchForBook(ifstream &cin) {
 }
 
 void Library::getBookInfo(const Book& book) const {
+    string available;
+    available = book.getAvailability() ? "Yes" : "No";
     cout << "No. " + to_string(book.getNum()) +
             "\nTitle: " + book.getTitle() +
             "\nAuthor: " + book.getAuthor() +
             "\nPages: " + to_string(book.getPublicationYear()) +
-            "\nAvailability: " + to_string(book.getAvailability())
-         << endl;
+            "\nAvailable: " + available << endl;
 }
 
 void Library::checkOut(ifstream &cin) {
@@ -138,12 +139,16 @@ void Library::checkOut(ifstream &cin) {
         cout << "Enter the No. of the book you wish to check out: ";
     }
     bool found = false;
-    for (Book b : bookInventory) {
+    for (Book& b : bookInventory) {
         if (b.getNum() == id) {
             found = true;
-            cout << "Checking out the following book: ";
-            getBookInfo(b);
-            b.setAvailability(false);
+            if (b.getAvailability()) {
+                b.setAvailability(false);
+                cout << "Checking out the following book: ";
+                getBookInfo(b);
+            } else {
+                cout << "That book is already checked out.";
+            }
         }
     }
     if (!found) {
@@ -163,12 +168,12 @@ void Library::checkIn(ifstream &cin) {
         cout << "Enter the No. of the book you are checking in: ";
     }
     bool found = false;
-    for (Book b : bookInventory) {
+    for (Book& b : bookInventory) {
         if (b.getNum() == id) {
             found = true;
+            b.setAvailability(true);
             cout << "Checking in the following book: ";
             getBookInfo(b);
-            b.setAvailability(true);
         }
     }
     if (!found) {
