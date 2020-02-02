@@ -171,9 +171,13 @@ void Library::checkIn(ifstream &cin) {
     for (Book& b : bookInventory) {
         if (b.getNum() == id) {
             found = true;
-            b.setAvailability(true);
-            cout << "Checking in the following book: ";
-            getBookInfo(b);
+            if (!b.getAvailability()) {
+                b.setAvailability(true);
+                cout << "Checking in the following book: ";
+                getBookInfo(b);
+            } else {
+                cout << "That book is already checked in." << endl;
+            }
         }
     }
     if (!found) {

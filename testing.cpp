@@ -78,4 +78,10 @@ void testCheckInCheckOut(ifstream &fin, Library &testLib) {
     testLib.checkOut(fin);
     testLib.checkOut(fin);
     cout << "\nIf the book was checked out and then an error message was displayed, the test was a success." << endl;
+
+    cout << "===== TEST 4 =====" << endl;
+    cout << "Trying to check in `The Great Gatsby` twice, should fail..." << endl << endl;
+    testLib.checkIn(fin);
+    testLib.checkIn(fin);
+    cout << "\nIf the book was checked in and then an error message was displayed, the test was a success." << endl;
 }
