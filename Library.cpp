@@ -80,7 +80,7 @@ bool Library::searchForBook(ifstream &cin) {
             cout << "Enter a book title: ";
             getline(cin, searchTerm);
             transform(searchTerm.begin(), searchTerm.end(), searchTerm.begin(), ::tolower);
-            for (Book b : bookInventory) {
+            for (const Book& b : bookInventory) {
                 string tempTitle = b.getTitle();
                 transform(tempTitle.begin(), tempTitle.end(), tempTitle.begin(), ::tolower);
                 if (tempTitle == searchTerm) {

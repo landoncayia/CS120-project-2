@@ -56,11 +56,22 @@ that I would not have caught otherwise.
 Because of the fact that I was experiencing difficulty with testing the way
 we did in lecture, I didn't have many test cases by the second step.  
 
-To work around the limitation detailed in the second part, I decided to use
-the console to print what should be inputted for test cases. This seemed to
-work well as I was still able to catch and fix errors this way.
+I contacted Lisa regarding my testing method, and she suggested creating a file
+that holds potential user input and to pass it to my functions with an `ifstream`
+object for testing. I have implemented this solution, but it messed up the order
+of my commits. That is why they are a bit scattered about in their current state.
+It is required to modify the functions that are being tested to match the way
+they are called in `testing.cpp`. It is required that they accept the `ifstream`
+object created in the testing file that opens and reads `testCases.txt` to test
+certain user input cases.
 
-## Fifth Part
+
+## Bug Fixing
+As I found logic and runtime errors, I fixed them and noted them in the commit
+comments. There were quite a bit more than I was expecting. Most of them had to
+do with me not using reference variables when I should have been. That meant that
+when a book was passed to a function and then modified only the book's copy was
+modified, not the actual book from the `Library` instance's `bookInventory` field.
 
 
 ## Sources
