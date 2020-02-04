@@ -40,10 +40,13 @@ bool Book::getAvailability() const {
     return isAvailable;
 }
 
-void Book::setBookInfo(string title, string author, int year) {
-    this->title = title;
-    this->author = author;
-    publicationYear = year;
+optional<double> Book::getPurchasePrice() const {
+    if (purchasePrice) {
+        return *purchasePrice;
+    } else {
+        cout << "This book is not available for purchase.\n";
+        return nullopt;
+    }
 }
 
 void Book::setAvailability(bool status) {
@@ -142,7 +145,12 @@ void Library::getBookInfo(const Book& book) const {
             "\nTitle: " + book.getTitle() +
             "\nAuthor: " + book.getAuthor() +
             "\nPages: " + to_string(book.getPublicationYear()) +
-            "\nAvailable: " + available << "\n\n";
+            "\nAvailable: " + available;
+    if (book.getPurchasePrice()) {
+        cout << "\nPurchase Price: " + *book.getPurchasePrice() + "\n\n";
+    } else {
+        cout << "\n\n";
+    }
 }
 
 void Library::checkOut(istream &ins, ostream &outs) {

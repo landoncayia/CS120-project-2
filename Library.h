@@ -42,13 +42,12 @@ public:
     string getAuthor() const;
     int getPublicationYear() const;
     bool getAvailability() const;
-    optional<string> getPurchasePrice() const;
+    optional<double> getPurchasePrice() const;
 
     // Setters
     // Requires: The data that the field specified should be changed to
     // Modifies: The field(s) specified by the function
     // Effects: Modifies certain fields based on the function
-    void setBookInfo(string title, string author, int pages);
     void setAvailability(bool status);
     void setPurchasePrice(double price);
 };
