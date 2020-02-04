@@ -64,12 +64,17 @@ public:
     // Effects: Creates a Library object that has books, calls BuildLibraryFromCSV if provided with a vector of books
     //          and fills with the contents of `books.csv`
     Library();
-    Library(vector<Book> inv);
+    explicit Library(vector<Book> inv);
+
+    // Requires: Nothing
+    // Modifies: Nothing
+    // Effects: Displays the main menu for the program
+    static void displayMenu();
 
     // Requires: Nothing
     // Modifies: Nothing
     // Effects: Allows the user to search for a book by title or by author
-    bool searchForBook(istream &ins, ostream &outs);
+    void searchForBook(istream &ins, ostream &outs);
 
     // Requires: A Book object
     // Modifies: Nothing
@@ -101,10 +106,10 @@ public:
     // Effects: TBD
     void buyBook();
 
-    // Requires:
-    // Modifies:
-    // Effects:
-    void BuildLibraryFromCSV(const string& filename, vector<Book> &books);
+    // Requires: Filename and empty book vector reference
+    // Modifies: The book vector that is passed in, the Library's bookInventory field
+    // Effects: Builds a library using the book csv file
+    static void BuildLibraryFromCSV(const string& filename, vector<Book> &books);
 };
 
 #endif //LC_PROJECT2_LIBRARY_H

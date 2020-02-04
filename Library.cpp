@@ -61,13 +61,25 @@ Library::Library(vector<Book> inv) {
     bookInventory = inv;
 }
 
-bool Library::searchForBook(istream &ins, ostream &outs) {
+void Library::displayMenu() {
+    cout <<
+    endl <<
+    "Enter your choice as an integer:\n" <<
+    "1: Search for book\n" <<
+    "2: Check a book out by ID\n" <<
+    "3: Check a book in by ID\n" <<
+    "4: Donate a book (add to library)\n" <<
+    "5: Purchase a book by ID (if available to purchase)\n" <<
+    "6: Exit program\n";
+}
+
+void Library::searchForBook(istream &ins, ostream &outs) {
     int choice = 0;
     outs << "Search by\n"
             "1) Title\n"
             "2) Author\n";
     while (!(ins >> choice) || (choice != 1 && choice != 2 && choice != 3)) {
-        outs << "Invalid input." << endl;
+        outs << "Invalid input.\n";
         outs << "Search by\n"
                 "1) Title\n"
                 "2) Author\n";
@@ -79,6 +91,7 @@ bool Library::searchForBook(istream &ins, ostream &outs) {
             ins.ignore();
             outs << "Enter a book title: ";
             getline(ins, searchTerm);
+            outs << endl;
             transform(searchTerm.begin(), searchTerm.end(), searchTerm.begin(), ::tolower);
             for (const Book& b : bookInventory) {
                 string tempTitle = b.getTitle();
@@ -92,13 +105,14 @@ bool Library::searchForBook(istream &ins, ostream &outs) {
             if (!found) {
                 outs << "Could not find any books with those search terms." << endl;
             }
-            return found;
+            break;
         }
         case 2: { // Search by Author
             string searchTerm;
             ins.ignore();
             outs << "Enter a book author: ";
             getline(ins, searchTerm);
+            outs << endl;
             transform(searchTerm.begin(), searchTerm.end(), searchTerm.begin(), ::tolower);
             for (const Book& b : bookInventory) {
                 string tempAuthor = b.getAuthor();
@@ -112,12 +126,12 @@ bool Library::searchForBook(istream &ins, ostream &outs) {
             if (!found) {
                 outs << "Could not find any books with those search terms." << endl;
             }
-            return found;
+            break;
         }
         default: {
             outs << "There was a problem. Please try again." << endl;
-            return found;
         }
+        break;
     }
 }
 
@@ -128,14 +142,14 @@ void Library::getBookInfo(const Book& book) const {
             "\nTitle: " + book.getTitle() +
             "\nAuthor: " + book.getAuthor() +
             "\nPages: " + to_string(book.getPublicationYear()) +
-            "\nAvailable: " + available << endl;
+            "\nAvailable: " + available << "\n\n";
 }
 
 void Library::checkOut(istream &ins, ostream &outs) {
     int id;
     outs << "Enter the No. of the book you wish to check out: ";
     while (!(ins >> id)) {
-        outs << "Invalid input." << endl;
+        outs << "Invalid input.\n";
         outs << "Enter the No. of the book you wish to check out: ";
     }
     bool found = false;
@@ -152,7 +166,7 @@ void Library::checkOut(istream &ins, ostream &outs) {
         }
     }
     if (!found) {
-        outs << "Could not find a book with that No." << endl;
+        outs << "Could not find a book with that No.\n";
     }
 }
 
@@ -164,7 +178,7 @@ void Library::checkIn(istream &ins, ostream &outs) {
     int id;
     outs << "Enter the No. of the book you are checking in: ";
     while (!(ins >> id)) {
-        outs << "Invalid input." << endl;
+        outs << "Invalid input.\n";
         outs << "Enter the No. of the book you are checking in: ";
     }
     bool found = false;
