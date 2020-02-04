@@ -61,14 +61,14 @@ Library::Library(vector<Book> inv) {
     bookInventory = inv;
 }
 
-bool Library::searchForBook(ifstream &cin) {
+bool Library::searchForBook(istream &ins, ostream &outs) {
     int choice = 0;
-    cout << "Search by\n"
+    outs << "Search by\n"
             "1) Title\n"
             "2) Author\n";
-    while (!(cin >> choice) || (choice != 1 && choice != 2 && choice != 3)) {
-        cout << "Invalid input." << endl;
-        cout << "Search by\n"
+    while (!(ins >> choice) || (choice != 1 && choice != 2 && choice != 3)) {
+        outs << "Invalid input." << endl;
+        outs << "Search by\n"
                 "1) Title\n"
                 "2) Author\n";
     }
@@ -76,46 +76,46 @@ bool Library::searchForBook(ifstream &cin) {
     switch (choice) {
         case 1: { // Search by Title
             string searchTerm;
-            cin.ignore();
-            cout << "Enter a book title: ";
-            getline(cin, searchTerm);
+            ins.ignore();
+            outs << "Enter a book title: ";
+            getline(ins, searchTerm);
             transform(searchTerm.begin(), searchTerm.end(), searchTerm.begin(), ::tolower);
             for (const Book& b : bookInventory) {
                 string tempTitle = b.getTitle();
                 transform(tempTitle.begin(), tempTitle.end(), tempTitle.begin(), ::tolower);
                 if (tempTitle == searchTerm) {
                     found = true;
-                    cout << "Found book.\n\n";
+                    outs << "Found book.\n\n";
                     getBookInfo(b);
                 }
             }
             if (!found) {
-                cout << "Could not find any books with those search terms." << endl;
+                outs << "Could not find any books with those search terms." << endl;
             }
             return found;
         }
         case 2: { // Search by Author
             string searchTerm;
-            cin.ignore();
-            cout << "Enter a book author: ";
-            getline(cin, searchTerm);
+            ins.ignore();
+            outs << "Enter a book author: ";
+            getline(ins, searchTerm);
             transform(searchTerm.begin(), searchTerm.end(), searchTerm.begin(), ::tolower);
             for (const Book& b : bookInventory) {
                 string tempAuthor = b.getAuthor();
                 transform(tempAuthor.begin(), tempAuthor.end(), tempAuthor.begin(), ::tolower);
                 if (tempAuthor == searchTerm) {
                     found = true;
-                    cout << "Found book.\n\n";
+                    outs << "Found book.\n\n";
                     getBookInfo(b);
                 }
             }
             if (!found) {
-                cout << "Could not find any books with those search terms." << endl;
+                outs << "Could not find any books with those search terms." << endl;
             }
             return found;
         }
         default: {
-            cout << "There was a problem. Please try again." << endl;
+            outs << "There was a problem. Please try again." << endl;
             return found;
         }
     }
@@ -131,12 +131,12 @@ void Library::getBookInfo(const Book& book) const {
             "\nAvailable: " + available << endl;
 }
 
-void Library::checkOut(ifstream &cin) {
+void Library::checkOut(istream &ins, ostream &outs) {
     int id;
-    cout << "Enter the No. of the book you wish to check out: ";
-    while (!(cin >> id)) {
-        cout << "Invalid input." << endl;
-        cout << "Enter the No. of the book you wish to check out: ";
+    outs << "Enter the No. of the book you wish to check out: ";
+    while (!(ins >> id)) {
+        outs << "Invalid input." << endl;
+        outs << "Enter the No. of the book you wish to check out: ";
     }
     bool found = false;
     for (Book& b : bookInventory) {
@@ -144,15 +144,15 @@ void Library::checkOut(ifstream &cin) {
             found = true;
             if (b.getAvailability()) {
                 b.setAvailability(false);
-                cout << "Checking out the following book: ";
+                outs << "Checking out the following book: ";
                 getBookInfo(b);
             } else {
-                cout << "That book is already checked out.";
+                outs << "That book is already checked out.";
             }
         }
     }
     if (!found) {
-        cout << "Could not find a book with that No." << endl;
+        outs << "Could not find a book with that No." << endl;
     }
 }
 
@@ -160,12 +160,12 @@ int Library::getLibSize() const {
     return(bookInventory.size());
 }
 
-void Library::checkIn(ifstream &cin) {
+void Library::checkIn(istream &ins, ostream &outs) {
     int id;
-    cout << "Enter the No. of the book you are checking in: ";
-    while (!(cin >> id)) {
-        cout << "Invalid input." << endl;
-        cout << "Enter the No. of the book you are checking in: ";
+    outs << "Enter the No. of the book you are checking in: ";
+    while (!(ins >> id)) {
+        outs << "Invalid input." << endl;
+        outs << "Enter the No. of the book you are checking in: ";
     }
     bool found = false;
     for (Book& b : bookInventory) {
@@ -173,15 +173,15 @@ void Library::checkIn(ifstream &cin) {
             found = true;
             if (!b.getAvailability()) {
                 b.setAvailability(true);
-                cout << "Checking in the following book: ";
+                outs << "Checking in the following book: ";
                 getBookInfo(b);
             } else {
-                cout << "That book is already checked in." << endl;
+                outs << "That book is already checked in." << endl;
             }
         }
     }
     if (!found) {
-        cout << "Could not find a book with that No." << endl;
+        outs << "Could not find a book with that No." << endl;
     }
 }
 

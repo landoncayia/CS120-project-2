@@ -69,7 +69,7 @@ public:
     // Requires: Nothing
     // Modifies: Nothing
     // Effects: Allows the user to search for a book by title or by author
-    bool searchForBook(ifstream &cin);
+    bool searchForBook(istream &ins, ostream &outs);
 
     // Requires: A Book object
     // Modifies: Nothing
@@ -84,12 +84,12 @@ public:
     // Requires: Nothing
     // Modifies: isAvailable field
     // Effects: Allows the user to check a book out, making it not available
-    void checkOut(ifstream &cin);
+    void checkOut(istream &ins, ostream &outs);
 
     // Requires: Nothing
     // Modifies: isAvailable field
     // Effects: Allows the user to check a book in, making it available
-    void checkIn(ifstream &cin);
+    void checkIn(istream &ins, ostream &outs);
 
     // Requires: TBD
     // Modifies: TBD
