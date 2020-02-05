@@ -12,7 +12,7 @@
 using namespace std;
 
 // TODO: Add a smart pointer (check lecture slides from 2/4)
-// TODO: Implement buyBook
+// TODO: Implement buyBook and pricing
 // TODO: Add some more test cases (specifically for bad input)
 
 class Book {

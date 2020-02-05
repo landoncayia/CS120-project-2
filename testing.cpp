@@ -45,7 +45,7 @@ void testSearchForBook(ifstream &fin, Library &testLib) {
     cout << "\nIf the book info was displayed, the test was a success.\n\n";
 
     cout << "===== TEST 2 =====\n";
-    cout << "Searching for 'The Hunger Games: Catching Fire' - should not find the book...\n\n";
+    cout << "Searching for 'abcdefg' - should not find the book...\n\n";
     testLib.searchForBook(fin, cout);
     cout << "\nIf an error message was displayed, the test was a success.\n\n";
 
@@ -61,17 +61,27 @@ void testSearchForBook(ifstream &fin, Library &testLib) {
     cout << "\nIf an error message was displayed, the test was a success.\n\n";
 
     cout << "===== TEST 5 =====\n";
+    cout << "Searching for the author 'J.K. Rowling' - should find multiple books...\n\n";
+    testLib.searchForBook(fin, cout);
+    cout << "\nIf several 'Harry Potter' books were displayed, the test was a success.\n\n";
+
+    cout << "===== TEST 6 =====\n";
     cout << "Searching for the title 'The Hunger Games' - should find...\n\n";
     testLib.searchForBook(fin, cout);
     cout << "\nIf an error message was displayed, the test was a success.\n\n";
 
-    cout << "===== TEST 6 =====\n";
+    cout << "===== TEST 7 =====\n";
     cout << "Searching for the author 'Fifty Shades Darker' - should find...\n\n";
     testLib.searchForBook(fin, cout);
     cout << "\nIf the book info was displayed, the test was a success.\n\n";
 
-    cout << "===== TEST 7 =====" << endl;
+    cout << "===== TEST 8 =====" << endl;
     cout << "Searching for the author '1984' - should find...\n\n";
+    testLib.searchForBook(fin, cout);
+    cout << "\nIf the book info was displayed, the test was a success.\n\n";
+
+    cout << "===== TEST 9 =====" << endl;
+    cout << "Searching for the title 'the hunger' - should find...\n\n";
     testLib.searchForBook(fin, cout);
     cout << "\nIf the book info was displayed, the test was a success.\n\n";
 }
@@ -102,6 +112,11 @@ void testCheckInCheckOut(ifstream &fin, Library &testLib) {
 
     cout << "===== TEST 5 =====\n";
     cout << "Trying to check out Book No. 105 (does not exist), should fail...\n\n";
+    testLib.checkOut(fin, cout);
+    cout << "\nIf an error message was displayed, the test was a success.\n";
+
+    cout << "===== TEST 6 =====\n";
+    cout << "Trying to check in Book No. -5 (does not exist), should fail...\n\n";
     testLib.checkOut(fin, cout);
     cout << "\nIf an error message was displayed, the test was a success.\n";
 }

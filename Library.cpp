@@ -102,7 +102,7 @@ void Library::searchForBook(istream &ins, ostream &outs) {
             for (const Book& b : bookInventory) {
                 string tempTitle = b.getTitle();
                 transform(tempTitle.begin(), tempTitle.end(), tempTitle.begin(), ::tolower);
-                if (tempTitle == searchTerm) {
+                if (tempTitle.find(searchTerm) != string::npos) {
                     found = true;
                     outs << "Found book.\n\n";
                     getBookInfo(b);
@@ -123,7 +123,7 @@ void Library::searchForBook(istream &ins, ostream &outs) {
             for (const Book& b : bookInventory) {
                 string tempAuthor = b.getAuthor();
                 transform(tempAuthor.begin(), tempAuthor.end(), tempAuthor.begin(), ::tolower);
-                if (tempAuthor == searchTerm) {
+                if (tempAuthor.find(searchTerm) != string::npos) {
                     found = true;
                     outs << "Found book.\n\n";
                     getBookInfo(b);

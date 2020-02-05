@@ -70,7 +70,7 @@ are called by `testing.cpp`, I pass in `fin` for the `testCases.txt` file and
 `1, The Great Gatsby`  
 Selects the option to search by title, should find this book.
 ##### Test 2
-`1, The Hunger Games: Catching Fire`  
+`1, abcdefg`  
 Selects the option to search by title, should not find this book.
 ##### Test 3
 `2, F. Scott Fitzgerald`  
@@ -78,6 +78,29 @@ Selects the option to search by author, should find this author.
 ##### Test 4
 `2, Dr. Seuss`  
 Selects the option to search by author, should not find this author.
+##### Test 5
+`2, J.K. Rowling`
+Selects the option to search by author, should find multiple books by this
+author and display them all. This is meant to test the capability to find
+substrings with the search function and to check whether multiple results
+can be displayed.
+##### Test 6
+`1, The Hunger Games`
+Selects the option to search by title, should find this book (checking first
+index).
+##### Test 7
+`1, Fifty Shades Darker`
+Selects the option to search by title, should find this book (checking last
+index).
+##### Test 8
+`1, 1984`
+Selects the option to search by title, should find this book (checking a
+numerical title).
+##### Test 9
+`1, the hunger`
+Selects the option to search by title, should find this book. This is meant
+to test the capability to find substrings and tests lower case searches.
+
 
 #### `checkIn` and `checkOut` functions
 ##### Test 1
@@ -95,6 +118,12 @@ fail the second time.
 `5, 5`
 Attempts to check in Book No. 5 (The Great Gatsby) twice in a row. Should
 fail the second time.
+##### Test 5
+`105`  
+Attempts to check out Book No. 105 (does not exist). Should fail.
+##### Test 6
+`-5`
+Attempts to check in Book No. -5 (does not exist). Should fail.
 
 
 ## Bug Fixing
