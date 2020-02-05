@@ -2,6 +2,9 @@
 
 void testSearchForBook(ifstream &fin, Library &testLib);
 void testCheckInCheckOut(ifstream &fin, Library &testLib);
+void testAddBook(ifstream &fin, Library &testLib);
+void testSetBookPrice(ifstream &fin, Library &testLib);
+void testBuyBook(ifstream &fin, Library &testLib);
 
 /*
  * In order to test, functions in 'Library.h' and 'Library.cpp' must be modified to accept ifstream objects. This is
@@ -33,6 +36,15 @@ int main() {
 
     // Test checking books out/in
     testCheckInCheckOut(fin, testLib);
+
+    // Test adding books
+    testAddBook(fin, testLib);
+
+    // Test setting price
+    testSetBookPrice(fin, testLib);
+
+    // Test buying books
+    testBuyBook(fin, testLib);
 
     return 0;
 }
@@ -91,32 +103,76 @@ void testCheckInCheckOut(ifstream &fin, Library &testLib) {
     cout << "===== TEST 1 =====\n";
     cout << "Trying to check out `The Great Gatsby`, should succeed...\n";
     testLib.checkOut(fin, cout);
-    cout << "\nIf the book is no longer available, the test was a success.\n";
+    cout << "\nIf the book is no longer available, the test was a success.\n\n";
 
     cout << "===== TEST 2 =====\n";
     cout << "Trying to check in `The Great Gatsby`, should succeed...\n\n";
     testLib.checkIn(fin, cout);
-    cout << "\nIf the book is now available, the test was a success.\n";
+    cout << "\nIf the book is now available, the test was a success.\n\n";
 
     cout << "===== TEST 3 =====\n";
     cout << "Trying to check out `The Great Gatsby` twice, should fail...\n\n";
     testLib.checkOut(fin, cout);
     testLib.checkOut(fin, cout);
-    cout << "\nIf the book was checked out and then an error message was displayed, the test was a success.\n";
+    cout << "\nIf the book was checked out and then an error message was displayed, the test was a success.\n\n";
 
     cout << "===== TEST 4 =====\n";
     cout << "Trying to check in `The Great Gatsby` twice, should fail...\n\n";
     testLib.checkIn(fin, cout);
     testLib.checkIn(fin, cout);
-    cout << "\nIf the book was checked in and then an error message was displayed, the test was a success.\n";
+    cout << "\nIf the book was checked in and then an error message was displayed, the test was a success.\n\n";
 
     cout << "===== TEST 5 =====\n";
     cout << "Trying to check out Book No. 105 (does not exist), should fail...\n\n";
     testLib.checkOut(fin, cout);
-    cout << "\nIf an error message was displayed, the test was a success.\n";
+    cout << "\nIf an error message was displayed, the test was a success.\n\n";
 
     cout << "===== TEST 6 =====\n";
     cout << "Trying to check in Book No. -5 (does not exist), should fail...\n\n";
     testLib.checkOut(fin, cout);
-    cout << "\nIf an error message was displayed, the test was a success.\n";
+    cout << "\nIf an error message was displayed, the test was a success.\n\n";
+}
+
+void testAddBook(ifstream &fin, Library &testLib) {
+    cout << "===== TESTING ADD FUNCTIONALITY =====\n";
+    cout << "===== TEST 1 =====\n";
+    cout << "Trying to add a book called 'Memes' by 'Bob Ross' written in '2020'...\n";
+    testLib.addBook(fin, cout);
+    cout << "\nIf no error messages were displayed, the test was a success.\n\n";
+
+    cout << "===== TEST 2 =====\n";
+    cout << "Trying to add a book called 'Failure' by 'Landon Cayia' written in 'word', should fail...\n";
+    testLib.addBook(fin, cout);
+    cout << "\nIf an error message was displayed, the test was a success.\n\n";
+
+    cout << "===== TEST 3 =====\n";
+    cout << "Trying to add a book called 'Extra Memes' by 'Bob Ross' written in '-2018', should fail...\n";
+    testLib.addBook(fin, cout);
+    cout << "\nIf an error message was displayed, the test was a success.\n\n";
+}
+
+void testSetBookPrice(ifstream &fin, Library &testLib) {
+    cout << "===== TESTING SET PRICE FUNCTIONALITY =====\n";
+    cout << "===== TEST 1 =====\n";
+    cout << "Trying to set the price of Book No. 5 (The Great Gatsby) to $12.05, should succeed...\n";
+    testLib.setBookPrice(fin, cout);
+    cout << "\nIf no error messages were displayed, the test was a success.\n\n";
+
+    cout << "===== TEST 2 =====\n";
+    cout << "Trying to set the price of Book No. 144 (does not exist), should fail...\n";
+    testLib.setBookPrice(fin, cout);
+    cout << "\nIf an error message was displayed, the test was a success.\n\n";
+
+    cout << "===== TEST 3 =====\n";
+    cout << "Trying to set the price of Book No. 2 (Harry Potter and the Philosopher's Stone) to $2, should fail...\n";
+    testLib.setBookPrice(fin, cout);
+    cout << "\nIf an error message was displayed, the test was a success.\n\n";
+}
+
+void testBuyBook(ifstream &fin, Library &testLib) {
+    cout << "===== TESTING BUY FUNCTIONALITY =====\n";
+    cout << "===== TEST 1 =====\n";
+    cout << "Trying to buy the book 'The Great Gatsby' (id 5)...\n";
+    testLib.buyBook(fin, cout);
+    cout << "\nIf no error messages were displayed, the test was a success.\n";
 }

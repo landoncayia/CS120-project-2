@@ -77,15 +77,15 @@ void Library::displayMenu() {
 }
 
 int Library::getBookNum(istream &ins, ostream &outs) const {
-    int id;
+    int id = -1;
     outs << "Enter the No. of the book:\n";
     ins >> id;
-    while (ins.fail()) {
+    if (ins.fail()) {
         ins.clear();
         ins.ignore();
         outs << "Invalid input.\n";
-        outs << "Enter the No. of the book:\n";
-        ins >> id;
+    } else {
+        ins.ignore();
     }
     return id;
 }
@@ -176,42 +176,46 @@ int Library::getLibSize() const {
 }
 
 void Library::checkOut(istream &ins, ostream &outs) {
-    int id = getBookNum(cin, cout);
+    int id = getBookNum(ins, outs);
     bool found = false;
-    for (Book& b : bookInventory) {
-        if (b.getNum() == id) {
-            found = true;
-            if (b.getAvailability()) {
-                b.setAvailability(false);
-                outs << "Checking out the following book: ";
-                getBookInfo(b);
-            } else {
-                outs << "That book is already checked out.";
+    if (id != -1) {
+        for (Book& b : bookInventory) {
+            if (b.getNum() == id) {
+                found = true;
+                if (b.getAvailability()) {
+                    b.setAvailability(false);
+                    outs << "Checking out the following book:\n";
+                    getBookInfo(b);
+                } else {
+                    outs << "That book is already checked out.\n";
+                }
             }
         }
-    }
-    if (!found) {
-        outs << "Could not find a book with that No.\n";
+        if (!found) {
+            outs << "Could not find a book with that No.\n";
+        }
     }
 }
 
 void Library::checkIn(istream &ins, ostream &outs) {
-    int id = getBookNum(cin, cout);
+    int id = getBookNum(ins, outs);
     bool found = false;
-    for (Book& b : bookInventory) {
-        if (b.getNum() == id) {
-            found = true;
-            if (!b.getAvailability()) {
-                b.setAvailability(true);
-                outs << "Checking in the following book: ";
-                getBookInfo(b);
-            } else {
-                outs << "That book is already checked in." << endl;
+    if (id != -1) {
+        for (Book& b : bookInventory) {
+            if (b.getNum() == id) {
+                found = true;
+                if (!b.getAvailability()) {
+                    b.setAvailability(true);
+                    outs << "Checking in the following book:\n";
+                    getBookInfo(b);
+                } else {
+                    outs << "That book is already checked in.\n" << endl;
+                }
             }
         }
-    }
-    if (!found) {
-        outs << "Could not find a book with that No." << endl;
+        if (!found) {
+            outs << "Could not find a book with that No.\n" << endl;
+        }
     }
 }
 
@@ -220,62 +224,69 @@ void Library::addBook(istream &ins, ostream &outs) {
     string title, author;
     num = getLibSize() + 1;
     outs << "What is the title of the book?\n";
-    ins.ignore();
     getline(ins, title);
     outs << "\n";
     outs << "What is the author of the book?\n";
     getline(ins, author);
     outs << "\n";
     outs << "What year was this book published?\n";
-    while (!(cin >> year)) {
-        cin.ignore();
-        outs << "Invalid input. Please try again.\n";
-        outs << "What year was this book published?\n";
+    ins >> year;
+    if (ins.fail() || year < 0) {
+        ins.clear();
+        string junk;
+        getline(ins, junk);
+
+        outs << "Invalid input.\n";
+    } else {
+        ins.ignore();
+        Book newBook(num, title, author, year);
+        bookInventory.emplace_back(newBook);
     }
-    Book newBook(num, title, author, year);
-    bookInventory.emplace_back(newBook);
 }
 
 void Library::buyBook(istream &ins, ostream &outs) {
-    int id = getBookNum(cin, cout);
+    int id = getBookNum(ins, outs);
     bool found = false;
-    for (Book& b : bookInventory) {
-        if (b.getNum() == id) {
-            found = true;
-            if (b.getPurchasePrice()) {
-                outs << "\nPurchasing book for $" + to_string(*b.getPurchasePrice()) + "\n\n";
-                // TODO: Remove book somehow HERE
-            } else {
-                outs << "\nThat book is not available for purchase.\n\n";
+    if (id != -1) {
+        for (Book& b : bookInventory) {
+            if (b.getNum() == id) {
+                found = true;
+                if (b.getPurchasePrice()) {
+                    outs << "\nPurchasing book for $" + to_string(*b.getPurchasePrice()) + "\n\n";
+                    // TODO: Remove book somehow HERE
+                } else {
+                    outs << "\nThat book is not available for purchase.\n\n";
+                }
             }
         }
-    }
-    if (!found) {
-        outs << "Could not find a book with that No." << endl;
+        if (!found) {
+            outs << "Could not find a book with that No." << endl;
+        }
     }
 }
 
 void Library::setBookPrice(istream &ins, ostream &outs) {
-    int id = getBookNum(cin, cout);
+    int id = getBookNum(ins, outs);
     bool found = false;
-    for (Book& b : bookInventory) {
-        if (b.getNum() == id) {
-            found = true;
-            double price;
-            outs << "Enter the price:\n";
-            ins >> price;
-            while (ins.fail()) {
-                ins.clear();
-                ins.ignore();
-                outs << "Invalid input.\n";
+    if (id != -1) {
+        for (Book& b : bookInventory) {
+            if (b.getNum() == id) {
+                found = true;
+                double price;
                 outs << "Enter the price:\n";
                 ins >> price;
+                if (ins.fail() || price < 0) {
+                    ins.clear();
+                    ins.ignore();
+                    outs << "Invalid input.\n";
+                } else {
+                    b.setPurchasePrice(price);
+                }
             }
-            b.setPurchasePrice(price);
         }
-    }
-    if (!found) {
-        outs << "Could not find a book with that No." << endl;
+        if (!found) {
+            outs << "Could not find a book with that No." << endl;
+        }
     }
 }
 

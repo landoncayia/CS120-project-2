@@ -79,25 +79,25 @@ Selects the option to search by author, should find this author.
 `2, Dr. Seuss`  
 Selects the option to search by author, should not find this author.
 ##### Test 5
-`2, J.K. Rowling`
+`2, J.K. Rowling`  
 Selects the option to search by author, should find multiple books by this
 author and display them all. This is meant to test the capability to find
 substrings with the search function and to check whether multiple results
 can be displayed.
 ##### Test 6
-`1, The Hunger Games`
+`1, The Hunger Games`  
 Selects the option to search by title, should find this book (checking first
 index).
 ##### Test 7
-`1, Fifty Shades Darker`
+`1, Fifty Shades Darker`  
 Selects the option to search by title, should find this book (checking last
 index).
 ##### Test 8
-`1, 1984`
+`1, 1984`  
 Selects the option to search by title, should find this book (checking a
 numerical title).
 ##### Test 9
-`1, the hunger`
+`1, the hunger`  
 Selects the option to search by title, should find this book. This is meant
 to test the capability to find substrings and tests lower case searches.
 
@@ -115,15 +115,50 @@ since it is currently checked out.
 Attempts to check out Book No. 5 (The Great Gatsby) twice in a row. Should
 fail the second time.
 ##### Test 4
-`5, 5`
+`5, 5`  
 Attempts to check in Book No. 5 (The Great Gatsby) twice in a row. Should
 fail the second time.
 ##### Test 5
 `105`  
 Attempts to check out Book No. 105 (does not exist). Should fail.
 ##### Test 6
-`-5`
+`-5`  
 Attempts to check in Book No. -5 (does not exist). Should fail.
+
+
+#### `addBook` function
+##### Test 1
+`Memes, Bob Ross, 2020`  
+Attempts to add a Book to the Library. Should succeed.
+##### Test 2
+`Failure, Landon Cayia, word, 2019`  
+Attempts to add a Book to the library with a bad year. Should fail then
+succeed when corrected.
+##### Test 3
+`Extra Memes, Bob Ross, -2018, 2018`  
+Attempts to add a Book to the library with a bad year. Should fail then
+succeed when corrected.
+
+
+#### `setBookPrice` function
+##### Test 1
+`5, 12.05`
+Attempts to set the price for Book No. 5 (The Great Gatsby) to $12.05. Should
+succeed.
+##### Test 2
+`144`
+Attempts to set the price for Book No. 144 (does not exist). Should fail.
+##### Test 3
+`1, -2`
+Attempts to set the price for Book No. 2 (Harry Potter and the Philosopher's
+Stone) to $-2. Should fail.
+
+
+#### `buyBook` function
+##### Test 1
+`5`  
+Attempts to purchase Book No. 5 (The Great Gatsby). Should succeed since the
+book is for sale and has a price.
 
 
 ## Bug Fixing
