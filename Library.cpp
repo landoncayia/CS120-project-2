@@ -165,7 +165,7 @@ void Library::getBookInfo(const Book& b) const {
             "\nPages: " + to_string(b.getPublicationYear()) +
             "\nAvailable: " + available;
     if (b.getPurchasePrice()) {
-        cout << "\nPurchase Price: " + to_string(*b.getPurchasePrice()) + "\n\n";
+        printf("\nPurchase price: $%.2f\n\n", *b.getPurchasePrice());
     } else {
         cout << "\nThat book is not available for purchase.\n\n";
     }
@@ -252,8 +252,8 @@ void Library::buyBook(istream &ins, ostream &outs) {
             if (b.getNum() == id) {
                 found = true;
                 if (b.getPurchasePrice()) {
-                    outs << "\nPurchasing book for $" + to_string(*b.getPurchasePrice()) + "\n\n";
-                    // TODO: Remove book somehow HERE
+                    printf("\nPurchasing book for $%.2f\n\n", *b.getPurchasePrice());
+                    bookInventory.erase(bookInventory.begin() + id - 1);
                 } else {
                     outs << "\nThat book is not available for purchase.\n\n";
                 }

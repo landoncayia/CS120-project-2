@@ -172,7 +172,12 @@ void testSetBookPrice(ifstream &fin, Library &testLib) {
 void testBuyBook(ifstream &fin, Library &testLib) {
     cout << "===== TESTING BUY FUNCTIONALITY =====\n";
     cout << "===== TEST 1 =====\n";
-    cout << "Trying to buy the book 'The Great Gatsby' (id 5)...\n";
+    cout << "Trying to buy Book No. 5 'The Great Gatsby', should succeed...\n";
     testLib.buyBook(fin, cout);
-    cout << "\nIf no error messages were displayed, the test was a success.\n";
+    cout << "\nIf no error messages were displayed, the test was a success.\n\n";
+
+    cout << "===== TEST 2 =====\n";
+    cout << "Trying to buy Book No. 1 'The Hunger Games', should fail...\n";
+    testLib.buyBook(fin, cout);
+    cout << "\nIf an error message was displayed, the test was a success.\n\n";
 }

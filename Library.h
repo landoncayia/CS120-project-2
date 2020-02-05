@@ -12,8 +12,6 @@
 using namespace std;
 
 // TODO: Add a smart pointer (check lecture slides from 2/4)
-// TODO: Implement removing a book from the vector once it is bought
-// TODO: Add some more test cases (specifically for bad input)
 
 class Book {
 private:

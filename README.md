@@ -159,6 +159,10 @@ Stone) to $-2. Should fail.
 `5`  
 Attempts to purchase Book No. 5 (The Great Gatsby). Should succeed since the
 book is for sale and has a price.
+##### Test 2
+`1`  
+Attempts to purchase Book No. 1 (The Hunger Games). Should fail since this
+book is not available for purchase.
 
 
 ## Bug Fixing

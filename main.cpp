@@ -12,13 +12,14 @@ int main() {
         Library::displayMenu();
         cin >> choice;
         while (cin.fail() || (choice != 1 && choice != 2 && choice != 3 &&
-                choice != 4 && choice != 5 && choice != 6)) {
+                choice != 4 && choice != 5 && choice != 6 && choice != 7)) {
             cin.clear();
             cin.ignore();
             cout << "Invalid input. Please try again." << endl;
             Library::displayMenu();
             cin >> choice;
         }
+        cin.ignore();
         switch (choice) {
             case 1:
                 library.searchForBook(cin, cout);
