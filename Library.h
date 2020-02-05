@@ -12,7 +12,7 @@
 using namespace std;
 
 // TODO: Add a smart pointer (check lecture slides from 2/4)
-// TODO: Implement buyBook and pricing
+// TODO: Implement removing a book from the vector once it is bought
 // TODO: Add some more test cases (specifically for bad input)
 
 class Book {
@@ -69,7 +69,12 @@ public:
     // Effects: Displays the main menu for the program
     static void displayMenu();
 
-    // Requires: Nothing
+    // Requires: istream and ostream objects
+    // Modifies: Nothing
+    // Effects: Gets the No. of a book from user input
+    int getBookNum(istream &ins, ostream &outs) const;
+
+    // Requires: istream and ostream objects
     // Modifies: Nothing
     // Effects: Allows the user to search for a book by title or by author
     void searchForBook(istream &ins, ostream &outs);
@@ -77,32 +82,37 @@ public:
     // Requires: A Book object
     // Modifies: Nothing
     // Effects: Displays a book's number, name, author, page count, and availability to the user
-    void getBookInfo(const Book& book) const;
+    void getBookInfo(const Book& b) const;
 
     // Requires: Nothing
     // Modifies: Nothing
     // Effects: Returns the size of (number of books in) the library
     int getLibSize() const;
 
-    // Requires: Nothing
+    // Requires: istream and ostream objects
     // Modifies: isAvailable field
     // Effects: Allows the user to check a book out, making it not available
     void checkOut(istream &ins, ostream &outs);
 
-    // Requires: Nothing
+    // Requires: istream and ostream objects
     // Modifies: isAvailable field
     // Effects: Allows the user to check a book in, making it available
     void checkIn(istream &ins, ostream &outs);
 
-    // Requires: TBD
-    // Modifies: TBD
-    // Effects: TBD
+    // Requires: istream and ostream objects
+    // Modifies: bookInventory vector
+    // Effects: Adds a book to the library vector
     void addBook(istream &ins, ostream &outs);
 
-    // Requires: TBD
-    // Modifies: TBD
-    // Effects: TBD
-    void buyBook();
+    // Requires: istream and ostream objects
+    // Modifies: The bookInventory vector
+    // Effects: Purchases a book if it is purchasable, removing it from the Library
+    void buyBook(istream &ins, ostream &outs);
+
+    // Requires: istream and ostream objects
+    // Modifies: The purchasePrice field of a book
+    // Effects: Sets the price of a Book object in the Library
+    void setBookPrice(istream &ins, ostream &outs);
 
     // Requires: Filename and empty book vector reference
     // Modifies: The book vector that is passed in, the Library's bookInventory field

@@ -72,7 +72,22 @@ void Library::displayMenu() {
     "3: Check a book in by ID\n" <<
     "4: Donate a book (add to library)\n" <<
     "5: Purchase a book by ID (if available to purchase)\n" <<
-    "6: Exit program\n";
+    "6: Set the price of a book (this would be an admin action in a regular program)\n" <<
+    "7: Exit program\n";
+}
+
+int Library::getBookNum(istream &ins, ostream &outs) const {
+    int id;
+    outs << "Enter the No. of the book:\n";
+    ins >> id;
+    while (ins.fail()) {
+        ins.clear();
+        ins.ignore();
+        outs << "Invalid input.\n";
+        outs << "Enter the No. of the book:\n";
+        ins >> id;
+    }
+    return id;
 }
 
 void Library::searchForBook(istream &ins, ostream &outs) {
@@ -141,16 +156,16 @@ void Library::searchForBook(istream &ins, ostream &outs) {
     }
 }
 
-void Library::getBookInfo(const Book& book) const {
+void Library::getBookInfo(const Book& b) const {
     string available;
-    available = book.getAvailability() ? "Yes" : "No";
-    cout << "No. " + to_string(book.getNum()) +
-            "\nTitle: " + book.getTitle() +
-            "\nAuthor: " + book.getAuthor() +
-            "\nPages: " + to_string(book.getPublicationYear()) +
+    available = b.getAvailability() ? "Yes" : "No";
+    cout << "No. " + to_string(b.getNum()) +
+            "\nTitle: " + b.getTitle() +
+            "\nAuthor: " + b.getAuthor() +
+            "\nPages: " + to_string(b.getPublicationYear()) +
             "\nAvailable: " + available;
-    if (book.getPurchasePrice()) {
-        cout << "\nPurchase Price: " + to_string(*book.getPurchasePrice()) + "\n\n";
+    if (b.getPurchasePrice()) {
+        cout << "\nPurchase Price: " + to_string(*b.getPurchasePrice()) + "\n\n";
     } else {
         cout << "\nThat book is not available for purchase.\n\n";
     }
@@ -161,16 +176,7 @@ int Library::getLibSize() const {
 }
 
 void Library::checkOut(istream &ins, ostream &outs) {
-    int id;
-    outs << "Enter the No. of the book you wish to check out:\n";
-    ins >> id;
-    while (ins.fail()) {
-        ins.clear();
-        ins.ignore();
-        outs << "Invalid input.\n";
-        outs << "Enter the No. of the book you wish to check out:\n";
-        ins >> id;
-    }
+    int id = getBookNum(cin, cout);
     bool found = false;
     for (Book& b : bookInventory) {
         if (b.getNum() == id) {
@@ -190,16 +196,7 @@ void Library::checkOut(istream &ins, ostream &outs) {
 }
 
 void Library::checkIn(istream &ins, ostream &outs) {
-    int id;
-    outs << "Enter the No. of the book you are checking in:\n";
-    ins >> id;
-    while (ins.fail()) {
-        ins.clear();
-        ins.ignore();
-        outs << "Invalid input.\n";
-        outs << "Enter the No. of the book you are checking in:\n";
-        ins >> id;
-    }
+    int id = getBookNum(cin, cout);
     bool found = false;
     for (Book& b : bookInventory) {
         if (b.getNum() == id) {
@@ -237,6 +234,49 @@ void Library::addBook(istream &ins, ostream &outs) {
     }
     Book newBook(num, title, author, year);
     bookInventory.emplace_back(newBook);
+}
+
+void Library::buyBook(istream &ins, ostream &outs) {
+    int id = getBookNum(cin, cout);
+    bool found = false;
+    for (Book& b : bookInventory) {
+        if (b.getNum() == id) {
+            found = true;
+            if (b.getPurchasePrice()) {
+                outs << "\nPurchasing book for $" + to_string(*b.getPurchasePrice()) + "\n\n";
+                // TODO: Remove book somehow HERE
+            } else {
+                outs << "\nThat book is not available for purchase.\n\n";
+            }
+        }
+    }
+    if (!found) {
+        outs << "Could not find a book with that No." << endl;
+    }
+}
+
+void Library::setBookPrice(istream &ins, ostream &outs) {
+    int id = getBookNum(cin, cout);
+    bool found = false;
+    for (Book& b : bookInventory) {
+        if (b.getNum() == id) {
+            found = true;
+            double price;
+            outs << "Enter the price:\n";
+            ins >> price;
+            while (ins.fail()) {
+                ins.clear();
+                ins.ignore();
+                outs << "Invalid input.\n";
+                outs << "Enter the price:\n";
+                ins >> price;
+            }
+            b.setPurchasePrice(price);
+        }
+    }
+    if (!found) {
+        outs << "Could not find a book with that No." << endl;
+    }
 }
 
 void Library::BuildLibraryFromCSV(const string& filename, vector<Book> &books) {

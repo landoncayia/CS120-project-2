@@ -33,13 +33,13 @@ int main() {
                 library.addBook(cin, cout);
                 break;
             case 5:
-                //library.buyBook();
+                library.buyBook(cin, cout);
                 break;
             case 6:
-                exit = true;
+                library.setBookPrice(cin, cout);
                 break;
             default:
-                cout << "Something went wrong." << endl;
+                exit = true;
                 break;
         }
     }
