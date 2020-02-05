@@ -38,50 +38,70 @@ int main() {
 }
 
 void testSearchForBook(ifstream &fin, Library &testLib) {
-    cout << "===== TESTING SEARCH FUNCTIONALITY" << endl;
-    cout << "===== TEST 1 =====" << endl;
-    cout << "Searching for `The Great Gatsby` - should find the book and print its information..." << endl << endl;
+    cout << "===== TESTING SEARCH FUNCTIONALITY =====\n";
+    cout << "===== TEST 1 =====\n";
+    cout << "Searching for `The Great Gatsby` - should find the book and print its information...\n\n";
     testLib.searchForBook(fin, cout);
-    cout << "\nIf the book info was displayed, the test was a success." << endl << endl;
+    cout << "\nIf the book info was displayed, the test was a success.\n\n";
 
-    cout << "===== TEST 2 =====" << endl;
-    cout << "Searching for 'The Hunger Games: Catching Fire' - should not find the book..." << endl << endl;
+    cout << "===== TEST 2 =====\n";
+    cout << "Searching for 'The Hunger Games: Catching Fire' - should not find the book...\n\n";
     testLib.searchForBook(fin, cout);
-    cout << "\nIf an error message was displayed, the test was a success." << endl << endl;
+    cout << "\nIf an error message was displayed, the test was a success.\n\n";
 
-    cout << "===== TEST 3 =====" << endl;
-    cout << "Searching for the author 'F. Scott Fitzgerald' - should find a book..." << endl << endl;
+    cout << "===== TEST 3 =====\n";
+    cout << "Searching for the author 'F. Scott Fitzgerald' - should find a book...\n\n";
     testLib.searchForBook(fin, cout);
-    cout << "\nIf all books by this author are displayed, the test was a success." << endl;
-    cout << "If some books are missing, then this needs fixing." << endl << endl;
+    cout << "\nIf all books by this author are displayed, the test was a success.\n";
+    cout << "If some books are missing, then this needs fixing.\n\n";
 
-    cout << "===== TEST 4 =====" << endl;
-    cout << "Searching for the author 'Dr. Seuss' - should not find anything..." << endl << endl;
+    cout << "===== TEST 4 =====\n";
+    cout << "Searching for the author 'Dr. Seuss' - should not find anything...\n\n";
     testLib.searchForBook(fin, cout);
-    cout << "\nIf an error message was displayed, the test was a success." << endl << endl;
+    cout << "\nIf an error message was displayed, the test was a success.\n\n";
+
+    cout << "===== TEST 5 =====\n";
+    cout << "Searching for the title 'The Hunger Games' - should find...\n\n";
+    testLib.searchForBook(fin, cout);
+    cout << "\nIf an error message was displayed, the test was a success.\n\n";
+
+    cout << "===== TEST 6 =====\n";
+    cout << "Searching for the author 'Fifty Shades Darker' - should find...\n\n";
+    testLib.searchForBook(fin, cout);
+    cout << "\nIf the book info was displayed, the test was a success.\n\n";
+
+    cout << "===== TEST 7 =====" << endl;
+    cout << "Searching for the author '1984' - should find...\n\n";
+    testLib.searchForBook(fin, cout);
+    cout << "\nIf the book info was displayed, the test was a success.\n\n";
 }
 
 void testCheckInCheckOut(ifstream &fin, Library &testLib) {
-    cout << "===== TESTING CHECK IN/OUT FUNCTIONALITY =====" << endl;
-    cout << "===== TEST 1 =====" << endl;
-    cout << "Trying to check out `The Great Gatsby`, should succeed..." << endl << endl;
+    cout << "===== TESTING CHECK IN/OUT FUNCTIONALITY =====\n";
+    cout << "===== TEST 1 =====\n";
+    cout << "Trying to check out `The Great Gatsby`, should succeed...\n";
     testLib.checkOut(fin, cout);
-    cout << "\nIf the book is no longer available, the test was a success." << endl << endl;
+    cout << "\nIf the book is no longer available, the test was a success.\n";
 
-    cout << "===== TEST 2 =====" << endl;
-    cout << "Trying to check in `The Great Gatsby`, should succeed..." << endl << endl;
+    cout << "===== TEST 2 =====\n";
+    cout << "Trying to check in `The Great Gatsby`, should succeed...\n\n";
     testLib.checkIn(fin, cout);
-    cout << "\nIf the book is now available, the test was a success." << endl;
+    cout << "\nIf the book is now available, the test was a success.\n";
 
-    cout << "===== TEST 3 =====" << endl;
-    cout << "Trying to check out `The Great Gatsby` twice, should fail..." << endl << endl;
+    cout << "===== TEST 3 =====\n";
+    cout << "Trying to check out `The Great Gatsby` twice, should fail...\n\n";
     testLib.checkOut(fin, cout);
     testLib.checkOut(fin, cout);
-    cout << "\nIf the book was checked out and then an error message was displayed, the test was a success." << endl;
+    cout << "\nIf the book was checked out and then an error message was displayed, the test was a success.\n";
 
-    cout << "===== TEST 4 =====" << endl;
-    cout << "Trying to check in `The Great Gatsby` twice, should fail..." << endl << endl;
+    cout << "===== TEST 4 =====\n";
+    cout << "Trying to check in `The Great Gatsby` twice, should fail...\n\n";
     testLib.checkIn(fin, cout);
     testLib.checkIn(fin, cout);
-    cout << "\nIf the book was checked in and then an error message was displayed, the test was a success." << endl;
+    cout << "\nIf the book was checked in and then an error message was displayed, the test was a success.\n";
+
+    cout << "===== TEST 5 =====\n";
+    cout << "Trying to check out Book No. 105 (does not exist), should fail...\n\n";
+    testLib.checkOut(fin, cout);
+    cout << "\nIf an error message was displayed, the test was a success.\n";
 }

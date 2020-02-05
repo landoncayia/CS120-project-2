@@ -11,10 +11,9 @@
 
 using namespace std;
 
-
-// TODO: Implement optional stuff
-// TODO: Implement smart pointers
-// TODO: Implement addBook and buyBook
+// TODO: Add a smart pointer (check lecture slides from 2/4)
+// TODO: Implement buyBook
+// TODO: Add some more test cases (specifically for bad input)
 
 class Book {
 private:

@@ -41,12 +41,7 @@ bool Book::getAvailability() const {
 }
 
 optional<double> Book::getPurchasePrice() const {
-    if (purchasePrice) {
-        return *purchasePrice;
-    } else {
-        cout << "This book is not available for purchase.\n";
-        return nullopt;
-    }
+    return purchasePrice;
 }
 
 void Book::setAvailability(bool status) {
@@ -157,7 +152,7 @@ void Library::getBookInfo(const Book& book) const {
     if (book.getPurchasePrice()) {
         cout << "\nPurchase Price: " + to_string(*book.getPurchasePrice()) + "\n\n";
     } else {
-        cout << "\n\n";
+        cout << "\nThat book is not available for purchase.\n\n";
     }
 }
 
@@ -267,7 +262,7 @@ void Library::BuildLibraryFromCSV(const string& filename, vector<Book> &books) {
 
         getline(fin, junk);
 
-        books.emplace_back(Book(num, title, author, year)); // TODO: Add price somehow once you learn optionals?
+        books.emplace_back(Book(num, title, author, year));
     }
     fin.close();
 }
