@@ -10,11 +10,14 @@ int main() {
     bool exit = false;
     while (!exit) {
         Library::displayMenu();
-        while ((!(cin >> choice)) || (choice != 1 && choice != 2 && choice != 3 &&
+        cin >> choice;
+        while (cin.fail() || (choice != 1 && choice != 2 && choice != 3 &&
                 choice != 4 && choice != 5 && choice != 6)) {
+            cin.clear();
             cin.ignore();
             cout << "Invalid input. Please try again." << endl;
             Library::displayMenu();
+            cin >> choice;
         }
         switch (choice) {
             case 1:
@@ -27,7 +30,7 @@ int main() {
                 library.checkIn(cin, cout);
                 break;
             case 4:
-                //library.addBook();
+                library.addBook(cin, cout);
                 break;
             case 5:
                 //library.buyBook();

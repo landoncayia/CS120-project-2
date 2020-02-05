@@ -98,7 +98,7 @@ public:
     // Requires: TBD
     // Modifies: TBD
     // Effects: TBD
-    void addBook();
+    void addBook(istream &ins, ostream &outs);
 
     // Requires: TBD
     // Modifies: TBD

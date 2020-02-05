@@ -53,6 +53,10 @@ void Book::setAvailability(bool status) {
     isAvailable = status;
 }
 
+void Book::setPurchasePrice(double price) {
+    purchasePrice = price;
+}
+
 /************* Library implementation ******************/
 
 Library::Library() {
@@ -81,11 +85,15 @@ void Library::searchForBook(istream &ins, ostream &outs) {
     outs << "Search by\n"
             "1) Title\n"
             "2) Author\n";
-    while (!(ins >> choice) || (choice != 1 && choice != 2 && choice != 3)) {
+    ins >> choice;
+    while (ins.fail() || (choice != 1 && choice != 2)) {
+        ins.clear();
+        ins.ignore();
         outs << "Invalid input.\n";
         outs << "Search by\n"
                 "1) Title\n"
                 "2) Author\n";
+        ins >> choice;
     }
     bool found = false;
     switch (choice) {
@@ -147,18 +155,26 @@ void Library::getBookInfo(const Book& book) const {
             "\nPages: " + to_string(book.getPublicationYear()) +
             "\nAvailable: " + available;
     if (book.getPurchasePrice()) {
-        cout << "\nPurchase Price: " + *book.getPurchasePrice() + "\n\n";
+        cout << "\nPurchase Price: " + to_string(*book.getPurchasePrice()) + "\n\n";
     } else {
         cout << "\n\n";
     }
 }
 
+int Library::getLibSize() const {
+    return(bookInventory.size());
+}
+
 void Library::checkOut(istream &ins, ostream &outs) {
     int id;
-    outs << "Enter the No. of the book you wish to check out: ";
-    while (!(ins >> id)) {
+    outs << "Enter the No. of the book you wish to check out:\n";
+    ins >> id;
+    while (ins.fail()) {
+        ins.clear();
+        ins.ignore();
         outs << "Invalid input.\n";
-        outs << "Enter the No. of the book you wish to check out: ";
+        outs << "Enter the No. of the book you wish to check out:\n";
+        ins >> id;
     }
     bool found = false;
     for (Book& b : bookInventory) {
@@ -178,16 +194,16 @@ void Library::checkOut(istream &ins, ostream &outs) {
     }
 }
 
-int Library::getLibSize() const {
-    return(bookInventory.size());
-}
-
 void Library::checkIn(istream &ins, ostream &outs) {
     int id;
-    outs << "Enter the No. of the book you are checking in: ";
-    while (!(ins >> id)) {
+    outs << "Enter the No. of the book you are checking in:\n";
+    ins >> id;
+    while (ins.fail()) {
+        ins.clear();
+        ins.ignore();
         outs << "Invalid input.\n";
-        outs << "Enter the No. of the book you are checking in: ";
+        outs << "Enter the No. of the book you are checking in:\n";
+        ins >> id;
     }
     bool found = false;
     for (Book& b : bookInventory) {
@@ -205,6 +221,27 @@ void Library::checkIn(istream &ins, ostream &outs) {
     if (!found) {
         outs << "Could not find a book with that No." << endl;
     }
+}
+
+void Library::addBook(istream &ins, ostream &outs) {
+    int num, year;
+    string title, author;
+    num = getLibSize() + 1;
+    outs << "What is the title of the book?\n";
+    ins.ignore();
+    getline(ins, title);
+    outs << "\n";
+    outs << "What is the author of the book?\n";
+    getline(ins, author);
+    outs << "\n";
+    outs << "What year was this book published?\n";
+    while (!(cin >> year)) {
+        cin.ignore();
+        outs << "Invalid input. Please try again.\n";
+        outs << "What year was this book published?\n";
+    }
+    Book newBook(num, title, author, year);
+    bookInventory.emplace_back(newBook);
 }
 
 void Library::BuildLibraryFromCSV(const string& filename, vector<Book> &books) {

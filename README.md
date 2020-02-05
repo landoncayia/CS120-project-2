@@ -58,12 +58,43 @@ we did in lecture, I didn't have many test cases by the second step.
 
 I contacted Lisa regarding my testing method, and she suggested creating a file
 that holds potential user input and to pass it to my functions with an `ifstream`
-object for testing. I have implemented this solution, but it messed up the order
-of my commits. That is why they are a bit scattered about in their current state.
-It is required to modify the functions that are being tested to match the way
-they are called in `testing.cpp`. It is required that they accept the `ifstream`
-object created in the testing file that opens and reads `testCases.txt` to test
-certain user input cases.
+object for testing. I have implemented this solution by modifying functions that
+involve user input to have `istream ins&` and `ostream &outs` as parameters.
+When they are called by `main.cpp`, I simply pass in `cin` and `cout`. When they
+are called by `testing.cpp`, I pass in `fin` for the `testCases.txt` file and
+`cout` for output to the console.
+
+## Documentation for `testCases.txt`
+#### `searchForBook` function
+##### Test 1
+`1, The Great Gatsby`  
+Selects the option to search by title, should find this book.
+##### Test 2
+`1, The Hunger Games: Catching Fire`  
+Selects the option to search by title, should not find this book.
+##### Test 3
+`2, F. Scott Fitzgerald`  
+Selects the option to search by author, should find this author.
+##### Test 4
+`2, Dr. Seuss`  
+Selects the option to search by author, should not find this author.
+
+#### `checkIn` and `checkOut` functions
+##### Test 1
+`5`  
+Attempts to check out Book No. 5 (The Great Gatsby) once. Should succeed.
+##### Test 2
+`5`  
+Attempts to check in Book No. 5 (The Great Gatsby) once. Should succeed
+since it is currently checked out.
+##### Test 3
+`5, 5`  
+Attempts to check out Book No. 5 (The Great Gatsby) twice in a row. Should
+fail the second time.
+##### Test 4
+`5, 5`
+Attempts to check in Book No. 5 (The Great Gatsby) twice in a row. Should
+fail the second time.
 
 
 ## Bug Fixing
