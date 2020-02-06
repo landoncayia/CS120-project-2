@@ -46,6 +46,8 @@ int main() {
     // Test buying books
     testBuyBook(fin, testLib);
 
+    fin.close();
+
     return 0;
 }
 
@@ -83,12 +85,12 @@ void testSearchForBook(ifstream &fin, Library &testLib) {
     cout << "\nIf an error message was displayed, the test was a success.\n\n";
 
     cout << "===== TEST 7 =====\n";
-    cout << "Searching for the author 'Fifty Shades Darker' - should find...\n\n";
+    cout << "Searching for the title 'Fifty Shades Darker' - should find...\n\n";
     testLib.searchForBook(fin, cout);
     cout << "\nIf the book info was displayed, the test was a success.\n\n";
 
     cout << "===== TEST 8 =====" << endl;
-    cout << "Searching for the author '1984' - should find...\n\n";
+    cout << "Searching for the title '1984' - should find...\n\n";
     testLib.searchForBook(fin, cout);
     cout << "\nIf the book info was displayed, the test was a success.\n\n";
 

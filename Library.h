@@ -11,8 +11,6 @@
 
 using namespace std;
 
-// TODO: Add a smart pointer (check lecture slides from 2/4)
-
 class Book {
 private:
     int num;

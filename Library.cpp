@@ -167,7 +167,7 @@ void Library::getBookInfo(const Book& b) const {
     if (b.getPurchasePrice()) {
         printf("\nPurchase price: $%.2f\n\n", *b.getPurchasePrice());
     } else {
-        cout << "\nThat book is not available for purchase.\n\n";
+        cout << "\nThis book is not available for purchase.\n\n";
     }
 }
 
@@ -187,7 +187,7 @@ void Library::checkOut(istream &ins, ostream &outs) {
                     outs << "Checking out the following book:\n";
                     getBookInfo(b);
                 } else {
-                    outs << "That book is already checked out.\n";
+                    outs << "This book is already checked out.\n";
                 }
             }
         }
@@ -209,7 +209,7 @@ void Library::checkIn(istream &ins, ostream &outs) {
                     outs << "Checking in the following book:\n";
                     getBookInfo(b);
                 } else {
-                    outs << "That book is already checked in.\n" << endl;
+                    outs << "This book is already checked in.\n" << endl;
                 }
             }
         }
@@ -255,7 +255,7 @@ void Library::buyBook(istream &ins, ostream &outs) {
                     printf("\nPurchasing book for $%.2f\n\n", *b.getPurchasePrice());
                     bookInventory.erase(bookInventory.begin() + id - 1);
                 } else {
-                    outs << "\nThat book is not available for purchase.\n\n";
+                    outs << "\nThis book is not available for purchase.\n\n";
                 }
             }
         }
@@ -313,7 +313,9 @@ void Library::BuildLibraryFromCSV(const string& filename, vector<Book> &books) {
 
         getline(fin, junk);
 
-        books.emplace_back(Book(num, title, author, year));
+        auto bookFromCSV = make_unique<Book>(num, title, author, year);
+
+        books.emplace_back(*bookFromCSV);
     }
     fin.close();
 }
